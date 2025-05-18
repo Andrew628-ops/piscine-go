@@ -1,0 +1,6 @@
+find . \
+\( -name 'a*' -print \) \ 
+-o \
+\( -type f -name '*z' -print \) \
+-o \
+\( -type f -name 'z*a!' -print \)
