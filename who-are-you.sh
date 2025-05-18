@@ -1,1 +1,2 @@
-echo 'I am <aotokpa>'
+#!/bin/bash
+echo 'Batman'
