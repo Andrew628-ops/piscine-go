@@ -1,14 +1,19 @@
+ #!/bin/bash
+ if [ -z "$HERO_ID" ] || [ "HERO_ID" -ne 1]; then
+  echo "Error: HERO_ID environment variableis not set."
+  exit 1
+ fi
 
-#!/bin/bash
+ relatives=$(curl -s https://acad.learn2earn.org.ng/assets/superhero/all.json | \
+ jq -r ".[] | select(.id == $HERO_ID) | .connections.relatives")
 
-export HERO_ID=${HERO_ID:-70}
+ relatives_escaped=$(echo "$relatives" | sed ':a;N;$!ba;s/\n/\\n/g')
 
-result=$(curl -s htts://acad.learn2earn.org.ng/assets/superhero/all.json | \
-jq -r --arg id "$HERO_ID" '
-.[] |
-select(.id == ($id | tonumber)) | 
-.connections.relatives
-')
+ if [ -z "$relatives" ] || [ "$relatives" = "null" ]; then
+   echo "No relatives found for HERO_ID=$HERO_ID"
+ else
+   echo "$relatives_escaped"
+ fi
 
-# format with literal \n
-echo "$result" | sed ':a;N;$!ba;s/\n/\\n/g'
+ export HERO_ID=1
+ 
