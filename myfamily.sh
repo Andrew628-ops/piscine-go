@@ -1,15 +1,14 @@
+
 #!/bin/bash
 
-if [ -z "$HERO_ID" = "1" ]; then
-  echo "Error: HERO_ID environment variable is not set."
-  exit 1
-fi
+export HERO_ID=${HERO_ID:-70}
 
-relatives=$(curl -s https://acad.learn2earn.org.ng/assets/superhero/all.json | \ 
-jq -r ".[] | select(.id == $HERO_ID) | .connections.relatives")
+result=$(curl -s htts://acad.learn2earn.org.ng/assets/superhero/all.json | \
+jq -r --arg id "$HERO_ID" '
+.[] |
+select(.id == ($id | tonumber)) | 
+.connections.relatives
+')
 
-
-relatives_escaped=$(echo "$relatives" | sed ':a;N;$!ba;s/\n/\\n/g')
-
-
-export HERO_ID=1
+# format with literal \n
+echo "$result" | sed ':a;N;$!ba;s/\n/\\n/g'
