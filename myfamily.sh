@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ -z "$HERO_ID" = "2" ]; then
+if [ -z "$HERO_ID" = "1" ]; then
   echo "Error: HERO_ID environment variable is not set."
   exit 1
 fi
@@ -17,4 +17,4 @@ else
   echo "$relatives_escaped"
 fi
 
-export HERO_ID=2
+export HERO_ID=1
