@@ -11,10 +11,5 @@ jq -r ".[] | select(.id == $HERO_ID) | .connections.relatives")
 
 relatives_escaped=$(echo "$relatives" | sed ':a;N;$!ba;s/\n/\\n/g')
 
-if [ -z "$relatives" ] || [ "$relative" = "null"]; then
-  echo "No relatives found for HERO_ID=$HERO_ID"
-else
-  echo "$relatives_escaped"
-fi
 
 export HERO_ID=1
