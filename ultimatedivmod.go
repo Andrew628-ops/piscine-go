@@ -1,9 +1,8 @@
-// piscine/ultimatedivmod.go
 package piscine
 
-func UltimateDivMod(a *int)  {
+func UltimateDivMod(a *int, b *int) {
 	div := *a / *b
 	mod := *a % *b
-	*a = div 
+	*a = div
 	*b = mod
 }
