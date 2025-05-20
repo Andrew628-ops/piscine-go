@@ -1,4 +1,4 @@
-package piscine 
+package piscine
 
 func BasicAtoi(s string) int {
 	result := 0
