@@ -7,4 +7,3 @@ func PrintStr(s string) {
 		fmt.Print(string(s[i])) // Print each character without a newline
 	}
 }
-
