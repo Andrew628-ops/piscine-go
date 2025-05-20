@@ -9,10 +9,12 @@ func Atoi(s string) int {
 	result := 0
 	sign := 1
 
-	// Handle potential negative numbers
+	// Handle potential signs: '+' or '-'
 	if s[0] == '-' {
 		sign = -1
-		s = s[1:]
+		s = s[1:] // Remove the '-' sign
+	} else if s[0] == '+' {
+		s = s[1:] // Remove the '+' sign (no need to change sign)
 	}
 
 	for i := 0; i < len(s); i++ {
@@ -22,5 +24,6 @@ func Atoi(s string) int {
 		}
 		result = result*10 + int(s[i]-'0')
 	}
+
 	return result * sign
 }
