@@ -8,7 +8,6 @@ func PrintComb2() {
 
 			PrintDigit(a / 10)
 			PrintDigit(a % 10)
-			z01.PrintRune(',')
 
 			PrintDigit(b / 10)
 			PrintDigit(b % 10)
