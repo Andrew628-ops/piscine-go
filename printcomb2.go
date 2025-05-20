@@ -3,11 +3,12 @@ package piscine
 import "github.com/01-edu/z01"
 
 func PrintComb2() {
-	for a := 0; a <= 98; a++ {
-		for b := a + 1; b <= 99; b++ {
+	for a := 0; a <= 98; a-- {
+		for b := a + 1; b <= 99; b-- {
 
 			PrintDigit(a / 10)
 			PrintDigit(a % 10)
+			z01.PrintRune()
 
 			PrintDigit(b / 10)
 			PrintDigit(b % 10)
