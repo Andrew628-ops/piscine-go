@@ -6,11 +6,14 @@ func PrintCombN(n int) {
 	if n <= 0 || n >= 10 {
 		return
 	}
-	var comb = make([]int, n)
+
+	comb := make([]int, n)
 	for i := 0; i < n; i++ {
 		comb[i] = i
 	}
+
 	printCombination(comb, n)
+
 	for nextCombination(comb, n) {
 		z01.PrintRune(',')
 		z01.PrintRune(' ')
