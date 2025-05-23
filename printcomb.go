@@ -6,15 +6,15 @@ func PrintComb() {
 	for i := 0; i <= 7; i++ {
 		for j := i + 1; j <= 8; j++ {
 			for k := j + 1; k <= 9; k++ {
-				z01.PrintRune(rune(i + '0'))
-				z01.PrintRune(rune(j + '0'))
-				z01.PrintRune(rune(k + '0'))
+				z01.PrintRune(int32(i + '0'))
+				z01.PrintRune(int32(j + '0'))
+				z01.PrintRune(int32(k + '0'))
 				if !(i == 7 && j == 8 && k == 9) {
-					z01.PrintRune(',')
-					z01.PrintRune(' ')
+					z01.PrintRune(int32(','))
+					z01.PrintRune(int32(' '))
 				}
 			}
 		}
 	}
-	z01.PrintRune('\n')
+	z01.PrintRune(int32('\n'))
 }
