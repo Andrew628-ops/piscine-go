@@ -3,37 +3,38 @@ package piscine
 import "github.com/01-edu/z01"
 
 func EightQueens() {
-	solution := make([]int, 0, 8)
-	solve(solution)
+	var board [8]int
+	placeQueen(&board, 0)
 }
 
-func solve(solution []int) {
-	if len(solution) == 8 {
-		printSolution(solution)
+func placeQueen(board *[8]int, col int) {
+	if col == 8 {
+		printBoard(board)
 		return
 	}
-	for pos := 1; pos <= 8; pos++ {
-		if isSafe(solution, pos) {
-			solve(append(solution, pos))
+	for row := 1; row <= 8; row++ {
+		if isSafe(board, col, row) {
+			board[col] = row
+			placeQueen(board, col+1)
 		}
 	}
 }
 
-func isSafe(solution []int, pos int) bool {
-	col := len(solution)
-	for i := 0; i < col; i++ {
-		if solution[i] == pos ||
-			solution[i]-i == pos-col ||
-			solution[i]+i == pos+col {
+func isSafe(board *[8]int, col int, row int) bool {
+	for prevCol := 0; prevCol < col; prevCol++ {
+		prevRow := board[prevCol]
+		if prevRow == row ||
+			prevRow-prevCol == row-col ||
+			prevRow+prevCol == row+col {
 			return false
 		}
 	}
 	return true
 }
 
-func printSolution(solution []int) {
-	for _, digit := range solution {
-		z01.PrintRune(rune(digit + '0'))
+func printBoard(board *[8]int) {
+	for i := 0; i < 8; i++ {
+		z01.PrintRune(rune(board[i] + '0'))
 	}
 	z01.PrintRune('\n')
 }
