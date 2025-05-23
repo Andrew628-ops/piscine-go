@@ -5,13 +5,10 @@ func IterativeFactorial(nb int) int {
 		return 0
 	}
 
-	if nb == 0 {
-		return 1
-	}
-
 	result := 1
-	for i := 1; i <= nb; i++ {
-		if result > (1<<63-1)/i {
+	for i := 2; i <= nb; i++ {
+		// Check for potential overflow by ensuring the result won't exceed max int
+		if result > (1<<31-1)/i {
 			return 0
 		}
 		result *= i
