@@ -9,22 +9,24 @@ func PrintNbrBase(nbr int, base string) {
 		return
 	}
 
-	baseLen := len(base)
 	if nbr == 0 {
 		z01.PrintRune(rune(base[0]))
 		return
 	}
 
-	if nbr < 0 {
+	baseLen := int64(len(base))
+	var num int64 = int64(nbr)
+
+	if num < 0 {
 		z01.PrintRune('-')
-		nbr = -nbr
+		num = -num
 	}
 
 	var result []rune
-	for nbr > 0 {
-		remainder := nbr % baseLen
+	for num > 0 {
+		remainder := num % baseLen
 		result = append([]rune{rune(base[remainder])}, result...)
-		nbr = nbr / baseLen
+		num = num / baseLen
 	}
 
 	for _, r := range result {
