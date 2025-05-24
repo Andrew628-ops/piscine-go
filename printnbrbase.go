@@ -9,29 +9,31 @@ func PrintNbrBase(nbr int, base string) {
 		return
 	}
 
-	if nbr == 0 {
-		z01.PrintRune(rune(base[0]))
+	baseRunes := []rune(base)
+	baseLen := int64(len(baseRunes))
+
+	var num int64 = int64(nbr)
+	if num == 0 {
+		z01.PrintRune(baseRunes[0])
 		return
 	}
 
-	baseLen := int64(len(base))
-	var num int64 = int64(nbr)
-
 	if num < 0 {
 		z01.PrintRune('-')
-		num = -num
+		// Handle the special case of math.MinInt64
+		// Convert to unsigned to prevent overflow
+		printBase(-num, baseRunes, baseLen)
+		return
 	}
 
-	var result []rune
-	for num > 0 {
-		remainder := num % baseLen
-		result = append([]rune{rune(base[remainder])}, result...)
-		num = num / baseLen
-	}
+	printBase(num, baseRunes, baseLen)
+}
 
-	for _, r := range result {
-		z01.PrintRune(r)
+func printBase(n int64, baseRunes []rune, baseLen int64) {
+	if n >= baseLen {
+		printBase(n/baseLen, baseRunes, baseLen)
 	}
+	z01.PrintRune(baseRunes[n%baseLen])
 }
 
 func isValidBase(base string) bool {
