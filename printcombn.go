@@ -12,13 +12,15 @@ func PrintCombN(n int) {
 		comb[i] = i
 	}
 
-	printCombination(comb, n)
-
-	for nextCombination(comb, n) {
+	for {
+		printCombination(comb, n)
+		if !nextCombination(comb, n) {
+			break
+		}
 		z01.PrintRune(',')
 		z01.PrintRune(' ')
-		printCombination(comb, n)
 	}
+	z01.PrintRune('\n') // <-- Important: newline after final output
 }
 
 func printCombination(comb []int, n int) {
