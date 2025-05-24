@@ -1,8 +1,6 @@
 package piscine
 
-import (
-	"github.com/01-edu/z01"
-)
+import "github.com/01-edu/z01"
 
 func PrintNbrBase(nbr int, base string) {
 	if !isValidBase(base) {
@@ -13,28 +11,23 @@ func PrintNbrBase(nbr int, base string) {
 
 	baseRunes := []rune(base)
 	baseLen := int64(len(baseRunes))
-
-	var num int64 = int64(nbr)
+	num := int64(nbr)
 
 	if num < 0 {
 		z01.PrintRune('-')
-		// Special handling for MinInt64
-		if num == -9223372036854775808 {
-			// Convert manually since abs overflows
-			printBase(9223372036854775808, baseRunes, baseLen)
-			return
-		}
-		num = -num
+		// Instead of -num, use this trick:
+		// Convert to unsigned to safely represent MinInt64
+		printBase(uint64(-num), baseRunes, baseLen)
+	} else {
+		printBase(uint64(num), baseRunes, baseLen)
 	}
-
-	printBase(num, baseRunes, baseLen)
 }
 
-func printBase(num int64, base []rune, baseLen int64) {
-	if num >= baseLen {
-		printBase(num/baseLen, base, baseLen)
+func printBase(num uint64, base []rune, baseLen int64) {
+	if num >= uint64(baseLen) {
+		printBase(num/uint64(baseLen), base, baseLen)
 	}
-	z01.PrintRune(base[num%baseLen])
+	z01.PrintRune(base[num%uint64(baseLen)])
 }
 
 func isValidBase(base string) bool {
