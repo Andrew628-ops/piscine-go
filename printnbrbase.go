@@ -5,7 +5,6 @@ import (
 )
 
 func PrintNbrBase(nbr int, base string) {
-	// Validate the base
 	if !isValidBase(base) {
 		z01.PrintRune('N')
 		z01.PrintRune('V')
@@ -14,10 +13,17 @@ func PrintNbrBase(nbr int, base string) {
 
 	baseRunes := []rune(base)
 	baseLen := int64(len(baseRunes))
-	num := int64(nbr)
+
+	var num int64 = int64(nbr)
 
 	if num < 0 {
 		z01.PrintRune('-')
+		// Special handling for MinInt64
+		if num == -9223372036854775808 {
+			// Convert manually since abs overflows
+			printBase(9223372036854775808, baseRunes, baseLen)
+			return
+		}
 		num = -num
 	}
 
