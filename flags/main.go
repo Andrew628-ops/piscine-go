@@ -6,21 +6,6 @@ import (
 	"github.com/01-edu/z01"
 )
 
-func printHelp() {
-	printStr("--insert")
-	newline()
-	printStr("  -i")
-	newline()
-	printStr("         This flag inserts the string into the string passed as argument.")
-	newline()
-	printStr("--order")
-	newline()
-	printStr("  -o")
-	newline()
-	printStr("         This flag will behave like a boolean, if it is called it will order the argument.")
-	newline()
-}
-
 func printStr(s string) {
 	for _, c := range s {
 		z01.PrintRune(c)
@@ -29,6 +14,21 @@ func printStr(s string) {
 
 func newline() {
 	z01.PrintRune('\n')
+}
+
+func printHelp() {
+	printStr("--insert")
+	newline()
+	printStr("  -i")
+	newline()
+	printStr("\t This flag inserts the string into the string passed as argument.")
+	newline()
+	printStr("--order")
+	newline()
+	printStr("  -o")
+	newline()
+	printStr("\t This flag will behave like a boolean, if it is called it will order the argument.")
+	newline()
 }
 
 func sortRunes(s string) string {
@@ -74,5 +74,7 @@ func main() {
 	}
 
 	printStr(result)
-	newline()
+	if result != "" {
+		newline()
+	}
 }
