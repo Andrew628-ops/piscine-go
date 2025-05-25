@@ -10,15 +10,19 @@ func main() {
 	args := os.Args[1:]
 	upper := false
 
+	// Check for --upper flag
 	if len(args) > 0 && args[0] == "--upper" {
 		upper = true
 		args = args[1:]
 	}
 
+	printed := false
+
 	for _, arg := range args {
 		n := 0
 		valid := true
 
+		// Manual string to int
 		for _, ch := range arg {
 			if ch >= '0' && ch <= '9' {
 				n = n*10 + int(ch-'0')
@@ -36,10 +40,14 @@ func main() {
 				letter = rune('a' + n - 1)
 			}
 			z01.PrintRune(letter)
+			printed = true
 		} else {
 			z01.PrintRune(' ')
+			printed = true
 		}
 	}
 
-	z01.PrintRune('\n')
+	if printed {
+		z01.PrintRune('\n')
+	}
 }
