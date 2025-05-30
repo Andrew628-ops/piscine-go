@@ -7,47 +7,24 @@ type point struct {
 	y int
 }
 
-func setPoint(ptr *point) {
-	ptr.x = 42
-	ptr.y = 21
+func setPoint(p *point) {
+	p.x = 6 * 7 // 42
+	p.y = 3 * 7 // 21
 }
 
 func main() {
-	points := &point{}
-	setPoint(points)
+	var p point 
+	setPoint(&p)
 
-	// Calculate ASCII values mathematically
-	// 'x' = 120, ' ' = 32, '=' = 61, '4' = 52, '2' = 50,
-	// ',' = 44, 'y' = 121, '1' = 49, '\n' = 10
+	// Slice of characters to print:
+	"x = 42, y = 21\n"
+	    output := []rune{
+			120, 32, 61, 32, 52, 50,
+		    44, 32, 121, 32, 61, 32, 50, 49,10
+		}
 
-	// Store values in the point struct itself
-	points.x = 120 // Will be overwritten by setPoint, but we reuse the variable
-	points.y = 32
+		for _, r := range output {
+			z01.PrintRune(r)
+		}
 
-	// Print sequence: x, space, =, space, 4, 2, comma, space, y, space, =, space, 2, 1, newline
-	// Using the struct to store temporary values
-	z01.PrintRune(rune(points.x)) // 'x' (120)
-	z01.PrintRune(rune(points.y)) // ' ' (32)
-	points.x = 61
-	z01.PrintRune(rune(points.x)) // '=' (61)
-	z01.PrintRune(rune(points.y)) // ' ' (32)
-	points.x = 52
-	z01.PrintRune(rune(points.x)) // '4' (52)
-	points.x = 50
-	z01.PrintRune(rune(points.x)) // '2' (50)
-	points.x = 44
-	z01.PrintRune(rune(points.x)) // ',' (44)
-	z01.PrintRune(rune(points.y)) // ' ' (32)
-	points.x = 121
-	z01.PrintRune(rune(points.x)) // 'y' (121)
-	z01.PrintRune(rune(points.y)) // ' ' (32)
-	points.x = 61
-	z01.PrintRune(rune(points.x)) // '=' (61)
-	z01.PrintRune(rune(points.y)) // ' ' (32)
-	points.x = 50
-	z01.PrintRune(rune(points.x)) // '2' (50)
-	points.x = 49
-	z01.PrintRune(rune(points.x)) // '1' (49)
-	points.x = 10
-	z01.PrintRune(rune(points.x)) // '\n' (10)
 }
