@@ -12,41 +12,26 @@ func setPoint(ptr *point) {
 	ptr.y = 21
 }
 
-func printInt(n int) {
-	if n == 0 {
-		z01.PrintRune('0')
-		return
-	}
-	if n < 0 {
-		z01.PrintRune('-')
-		n = -n
-	}
-	var digits []rune
-	for n > 0 {
-		digits = append(digits, rune(n%10+'0'))
-		n /= 10
-	}
-	for i := len(digits) - 1; i >= 0; i-- {
-		z01.PrintRune(digits[i])
-	}
-}
-
 func main() {
 	points := &point{}
-
 	setPoint(points)
 
+	// Print "x = 42, y = 21\n" using only z01.PrintRune
+	// x = 42
 	z01.PrintRune('x')
 	z01.PrintRune(' ')
 	z01.PrintRune('=')
 	z01.PrintRune(' ')
-	printInt(points.x)
+	z01.PrintRune('4')
+	z01.PrintRune('2')
+	// , y = 21
 	z01.PrintRune(',')
 	z01.PrintRune(' ')
 	z01.PrintRune('y')
 	z01.PrintRune(' ')
 	z01.PrintRune('=')
 	z01.PrintRune(' ')
-	printInt(points.y)
+	z01.PrintRune('2')
+	z01.PrintRune('1')
 	z01.PrintRune('\n')
 }
