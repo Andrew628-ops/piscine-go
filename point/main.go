@@ -13,18 +13,19 @@ func setPoint(p *point) {
 }
 
 func main() {
-	var p point 
+	var p point
 	setPoint(&p)
 
 	// Slice of characters to print:
 	"x = 42, y = 21\n"
-	    output := []rune{
-			120, 32, 61, 32, 52, 50,
-		    44, 32, 121, 32, 61, 32, 50, 49,10
-		}
+	output := []rune{
+		120, 32, 61, 32, 52, 50,
+		44, 32, 121, 32, 61, 32, 50, 49,
+		10,
+	}
 
-		for _, r := range output {
-			z01.PrintRune(r)
-		}
+	for _, r := range output {
+		z01.PrintRune(r)
+	}
 
 }
