@@ -1,47 +1,63 @@
 package main
 
 import (
-	"fmt"
 	"os"
 )
+
+func atoi(s string) (int, bool) {
+	n := 0
+	for i := 0; i < len(s); i++ {
+		c := s[i]
+		if c < '0' || c > '9' {
+			return 0, false
+		}
+		n = n*10 + int(c-'0')
+	}
+	return n, true
+}
 
 func main() {
 	args := os.Args[1:]
 
-	if len(args) < 3 || args[0] != "-c" {
-		return
+	if len(args) < 2 || args[0] != "-c" {
+		os.Stderr.WriteString("Usage: go run . -c <number> <file> [file...]\n")
+		os.Exit(1)
 	}
 
-	n := 0
-	for _, ch := range args[1] {
-		n = n*10 + int(ch-'0')
+	n, ok := atoi(args[1])
+	if !ok {
+		os.Stderr.WriteString("Invalid byte count\n")
+		os.Exit(1)
 	}
 
 	files := args[2:]
-	errorOccurred := false
-	multiple := len(files) > 1
+	if len(files) == 0 {
+		os.Stderr.WriteString("No file specified\n")
+		os.Exit(1)
+	}
 
-	for i, fileName := range files {
-		content, err :=
-			os.ReadFile(fileName)
+	errorOccurred := false
+
+	for i, filename := range files {
+		data, err := os.ReadFile(filename)
 		if err != nil {
-			fmt.Println(err) //Correct error message
+			os.Stderr.WriteString("open " + filename + ": " + err.Error() + "\n")
 			errorOccurred = true
 			continue
 		}
 
-		if multiple {
+		if len(files) > 1 {
 			if i > 0 {
-				fmt.Println()
+				os.Stdout.WriteString("\n")
 			}
-			fmt.Printf("==> %s <==\n", fileName)
+			os.Stdout.WriteString("==> " + filename + " <==\n")
 		}
 
-		if n <= len(content) {
-			fmt.Print(string(content[len(content)-n:]))
-		} else {
-			fmt.Print(string(content))
+		start := len(data) - n
+		if start < 0 {
+			start = 0
 		}
+		os.Stdout.Write(data[start:])
 	}
 
 	if errorOccurred {
