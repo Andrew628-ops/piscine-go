@@ -16,22 +16,20 @@ func main() {
 	points := &point{}
 	setPoint(points)
 
-	// Print "x = 42, y = 21\n" using only z01.PrintRune
-	// x = 42
-	z01.PrintRune('x')
-	z01.PrintRune(' ')
-	z01.PrintRune('=')
-	z01.PrintRune(' ')
-	z01.PrintRune('4')
-	z01.PrintRune('2')
-	// , y = 21
-	z01.PrintRune(',')
-	z01.PrintRune(' ')
-	z01.PrintRune('y')
-	z01.PrintRune(' ')
-	z01.PrintRune('=')
-	z01.PrintRune(' ')
-	z01.PrintRune('2')
-	z01.PrintRune('1')
-	z01.PrintRune('\n')
+	// Print "x = 42, y = 21\n" using minimal allowed constructs
+	z01.PrintRune(120) // 'x'
+	z01.PrintRune(32)  // ' '
+	z01.PrintRune(61)  // '='
+	z01.PrintRune(32)  // ' '
+	z01.PrintRune(52)  // '4'
+	z01.PrintRune(50)  // '2'
+	z01.PrintRune(44)  // ','
+	z01.PrintRune(32)  // ' '
+	z01.PrintRune(121) // 'y'
+	z01.PrintRune(32)  // ' '
+	z01.PrintRune(61)  // '='
+	z01.PrintRune(32)  // ' '
+	z01.PrintRune(50)  // '2'
+	z01.PrintRune(49)  // '1'
+	z01.PrintRune(10)  // '\n'
 }
