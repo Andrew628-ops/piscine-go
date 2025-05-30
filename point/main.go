@@ -16,19 +16,27 @@ func main() {
 	points := &point{}
 	setPoint(points)
 
-	z01.PrintRune(120) // 'x'
-	z01.PrintRune(32)  // ' '
-	z01.PrintRune(61)  // '='
-	z01.PrintRune(32)  // ' '
-	z01.PrintRune(52)  // '4'
-	z01.PrintRune(50)  // '2'
-	z01.PrintRune(44)  // ','
-	z01.PrintRune(32)  // ' '
-	z01.PrintRune(121) // 'y'
-	z01.PrintRune(32)  // ' '
-	z01.PrintRune(61)  // '='
-	z01.PrintRune(32)  // ' '
-	z01.PrintRune(50)  // '2'
-	z01.PrintRune(49)  // '1'
-	z01.PrintRune(10)  // '\n'
+	ascii := [15]int{
+		120, // x
+		32,  //
+		61,  // =
+		32,  //
+		52,  // 4
+		50,  // 2
+		44,  // ,
+		32,  //
+		121, // y
+		32,  //
+		61,  // =
+		32,  //
+		50,  // 2
+		49,  // 1
+		10,  // \n
+	}
+
+	i := 0
+	for i < 15 {
+		z01.PrintRune(ascii[i])
+		i++
+	}
 }
