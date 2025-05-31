@@ -2,8 +2,10 @@ package main
 
 import "os"
 
-const MaxInt64 = 9223372036854775807
-const MinInt64 = -9223372036854775808
+const (
+	MaxInt64 = 9223372036854775807
+	MinInt64 = -9223372036854775808
+)
 
 func main() {
 	if len(os.Args) != 4 {
