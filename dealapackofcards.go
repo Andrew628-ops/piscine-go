@@ -4,43 +4,35 @@ import "github.com/01-edu/z01"
 
 func DealAPackOfCards(deck []int) {
 	player := 1
-	index := 0
+	i := 0
 	for player <= 4 {
-		printChar('P')
-		printChar('l')
-		printChar('a')
-		printChar('y')
-		printChar('e')
-		printChar('r')
-		printChar(' ')
-		printChar(asciiDigit(player))
-		printChar(':')
-		printChar(' ')
+		z01.PrintRune('P')
+		z01.PrintRune('l')
+		z01.PrintRune('a')
+		z01.PrintRune('y')
+		z01.PrintRune('e')
+		z01.PrintRune('r')
+		z01.PrintRune(' ')
+		z01.PrintRune('0' + rune(player))
+		z01.PrintRune(':')
+		z01.PrintRune(' ')
 		count := 0
 		for count < 3 {
-			n := deck[index]
-			if n >= 10 {
-				printChar('1')
-				printChar(asciiDigit(n - 10))
+			num := deck[i]
+			if num >= 10 {
+				z01.PrintRune('1')
+				z01.PrintRune('0' + rune(num-10))
 			} else {
-				printChar(asciiDigit(n))
+				z01.PrintRune('0' + rune(num))
 			}
 			if count < 2 {
-				printChar(',')
-				printChar(' ')
+				z01.PrintRune(',')
+				z01.PrintRune(' ')
 			}
 			count++
-			index++
+			i++
 		}
 		z01.PrintRune('\n')
 		player++
 	}
-}
-
-func printChar(c byte) {
-	z01.PrintRune(rune(c))
-}
-
-func asciiDigit(n int) byte {
-	return byte('0' + n)
 }
