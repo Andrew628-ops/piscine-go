@@ -3,42 +3,44 @@ package piscine
 import "github.com/01-edu/z01"
 
 func DealAPackOfCards(deck []int) {
-	for i := 0; i < 4; i++ {
-		printString("Player ")
-		z01.PrintRune('1' + rune(i))
-		printString(": ")
-		for j := 0; j < 3; j++ {
-			printNumber(deck[i*3+j])
-			if j < 2 {
-				z01.PrintRune(',')
-				z01.PrintRune(' ')
+	player := 1
+	index := 0
+	for player <= 4 {
+		printChar('P')
+		printChar('l')
+		printChar('a')
+		printChar('y')
+		printChar('e')
+		printChar('r')
+		printChar(' ')
+		printChar(asciiDigit(player))
+		printChar(':')
+		printChar(' ')
+		count := 0
+		for count < 3 {
+			n := deck[index]
+			if n >= 10 {
+				printChar('1')
+				printChar(asciiDigit(n - 10))
+			} else {
+				printChar(asciiDigit(n))
 			}
+			if count < 2 {
+				printChar(',')
+				printChar(' ')
+			}
+			count++
+			index++
 		}
 		z01.PrintRune('\n')
+		player++
 	}
 }
 
-func printString(s string) {
-	for _, r := range s {
-		z01.PrintRune(r)
-	}
+func printChar(c byte) {
+	z01.PrintRune(rune(c))
 }
 
-func printNumber(n int) {
-	if n == 0 {
-		z01.PrintRune('0')
-		return
-	}
-	if n < 0 {
-		z01.PrintRune('-')
-		n = -n
-	}
-	var digits []rune
-	for n > 0 {
-		digits = append([]rune{'0' + rune(n%10)}, digits...)
-		n /= 10
-	}
-	for _, r := range digits {
-		z01.PrintRune(r)
-	}
+func asciiDigit(n int) byte {
+	return byte('0' + n)
 }
