@@ -1,14 +1,19 @@
 package piscine
 
-import "strings"
-
 func ShoppingSummaryCounter(str string) map[string]int {
-	items := strings.Split(str, "")
 	summary := make(map[string]int)
+	start := 0
 
-	for _, item := range items {
-		summary[item]++
+	for i, char := range str {
+		if char == ' ' {
+			item := str[start:i]
+			summary[item]++
+			start = i + 1
+		}
 	}
+
+	item := str[start:]
+	summary[item]++
 
 	return summary
 }
