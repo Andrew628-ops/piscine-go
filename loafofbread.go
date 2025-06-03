@@ -1,36 +1,46 @@
 package piscine
 
 func LoafOfBread(str string) string {
-	word := ""
-	result := ""
+	runes := []rune(str)
+	n := len(runes)
+	i := 0
+	words := []string{}
 
-	nonSpaceCount := 0
-	skipping := false
-
-	for _, r := range str {
-		if r == ' ' {
-			continue
+	for {
+		wordRunes := []rune{}
+		// Collect 5 non-space characters
+		for i < n && len(wordRunes) < 5 {
+			if runes[i] != ' ' {
+				wordRunes = append(wordRunes, runes[i])
+			}
+			i++
 		}
 
-		if skipping {
-			skipping = false
-			continue // skip this character
+		if len(wordRunes) == 0 {
+			break
 		}
 
-		word += string(r)
-		nonSpaceCount++
+		// If first word has less than 5 chars, return Invalid Output
+		if len(words) == 0 && len(wordRunes) < 5 {
+			return "Invalid Output\n"
+		}
 
-		if nonSpaceCount == 5 {
-			result += word + " "
-			word = ""
-			nonSpaceCount = 0
-			skipping = true // set flag to skip next character
+		words = append(words, string(wordRunes))
+
+		// Skip next character (if any)
+		if i < n {
+			i++
 		}
 	}
 
-	if result == "" {
-		return "Invalid Output\n"
+	// Join words with space and add newline
+	output := ""
+	for idx, w := range words {
+		if idx > 0 {
+			output += " "
+		}
+		output += w
 	}
-
-	return result[:len(result)-1] + "\n" // remove last space, add newline
+	output += "\n"
+	return output
 }
