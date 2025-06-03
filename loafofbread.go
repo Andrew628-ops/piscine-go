@@ -12,10 +12,9 @@ func LoafOfBread(str string) string {
 	for _, char := range str {
 		if char == ' ' {
 			if count < 5 {
-				continue // Skip spaces when building 5-char groups
+				continue // Skip spaces when counting to 5
 			}
-			// Keep space if it appears after a complete group
-			result += string(char)
+			result += string(char) // Keep space after group
 			continue
 		}
 
