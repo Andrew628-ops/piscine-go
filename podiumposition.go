@@ -1,10 +1,10 @@
 package piscine
 
 func PodiumPosition(podium [][]string) [][]string {
-	reversed := make([][]string, len(podium))
+	var reversed [][]string
 
-	for i := 0; i < len(podium); i++ {
-		reversed[i] = podium[len(podium)-1-i]
+	for i := len(podium) - 1; i >= 0; i-- {
+		reversed = append(reversed, podium[i])
 	}
 
 	return reversed
