@@ -8,29 +8,29 @@ func LoafOfBread(str string) string {
 	result := ""
 	count := 0
 	skip := false
+	charsProcessed := 0
 
 	for _, char := range str {
 		if char == ' ' {
-			if count < 5 {
-				continue // Skip spaces when counting to 5
-			}
-			result += string(char) // Keep space after group
+			result += string(char)
 			continue
 		}
 
+		charsProcessed++
 		if skip {
 			skip = false
 			continue
 		}
 
-		result += string(char)
-		count++
-
 		if count == 5 {
 			result += " "
 			count = 0
 			skip = true
+			continue
 		}
+
+		result += string(char)
+		count++
 	}
 
 	// Remove trailing space if exists
