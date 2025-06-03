@@ -1,11 +1,15 @@
 package piscine
 
 func PodiumPosition(podium [][]string) [][]string {
-	var reversed [][]string
+	length := len(podium)
+	var result [][]string
 
-	for i := len(podium) - 1; i >= 0; i-- {
-		reversed = append(reversed, podium[i])
+	// Create a slice of correct length by assigning manually
+	result = podium
+
+	for i := 0; i < length/2; i++ {
+		// Swap elements
+		podium[i], podium[length-1-i] = podium[length-1-i], podium[i]
 	}
-
-	return reversed
+	return result
 }
