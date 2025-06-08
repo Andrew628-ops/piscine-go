@@ -4,8 +4,8 @@ func BTreeMin(root *TreeNode) *TreeNode {
 	if root == nil {
 		return nil
 	}
-	for root.Right != nil {
-		root = root.Right
+	for root.Left != nil {
+		root = root.Left
 	}
 	return root
 }
