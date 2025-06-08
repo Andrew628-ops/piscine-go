@@ -7,5 +7,4 @@ func BTreeApplyPreorder(root *TreeNode, f func(...interface{}) (int, error)) {
 	f(root.Data)
 	BTreeApplyPreorder(root.Left, f)
 	BTreeApplyPreorder(root.Right, f)
-	BTreeApplyPostorder(root.Right, f)
 }
